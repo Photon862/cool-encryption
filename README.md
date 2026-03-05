@@ -27,3 +27,14 @@ This project lets you encode messages into sound. As far as I know, it's nearly 
 3. Run `encode-msg.py` to encode the message into a sound file (e.g., `test.wav`). The log of the encoding action will be saved in `log.csv`.
 
 4. To decode the message, use `decode-msg.py` with the generated sound file and the corresponding frequency map.
+
+---
+
+## Notes
+
+Limitations:
+- The message can only contain uppercase letters (A-Z) and digits (0-9).
+- The frequency map must be kept secret to ensure the security of the encoded message. (maybe a math-based key or function to generate the map from a password could be added in the future)
+- The decoding breaks if either the increment is too low, the tone duration is too short, or if the audio quality is poor (e.g., due to compression or background noise).
+
+I am planning to upgrade it with more incresed randomness and fillers.
