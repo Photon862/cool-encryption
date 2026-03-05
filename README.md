@@ -10,7 +10,28 @@ This project lets you encode messages into sound. As far as I know, it's nearly 
 
 1. Generates a random frequency map for each character (A-Z, 0-9) - generate_map.py with a given range and increment (e.g., 100-20,000 Hz with 10 Hz steps)
 
+eg:
+```json
+{
+  // this is increments of 10 u could even do increments of 1
+  "A": [110, 180, 140, ...],
+  "B": [120, 290, 200, ...],
+  ...
+}
+```
+
 2. Converts the message you want to send into sound (each character has multiple options to pick - so "A" could have 50+ different frequencies, and each time you encode, it picks a random different one)
+
+
+```json
+{
+  "A": [110, 680, 410, 930 ...],
+  // multiple options to choose from!
+}
+```
+
+For eg, the english langauge repeats the letter "E" the most, but with E having 50+ different frequencies, it can be used multiple times in the same message without repeating the same sound, which adds to the security and randomness of the encoding.
+
 
 3. Combine all the frequencies for each word into one sound (stacking them together) - so if your message is "HELLO", it will create a sound that contains the frequencies for H, E, L, L, O all at once.
 
