@@ -15,10 +15,10 @@ import json
 import os
 
 
-# Tap code mapping (C/K and I/J merged)
+# Tap code mapping (C/K merged only; I and J are separate)
 TAP_CODE = {
     'A': (1, 1), 'B': (1, 2), 'C': (1, 3), 'K': (1, 3), 'D': (1, 4), 'E': (1, 5),
-    'F': (2, 1), 'G': (2, 2), 'H': (2, 3), 'I': (2, 4), 'J': (2, 4), 'L': (3, 1),
+    'F': (2, 1), 'G': (2, 2), 'H': (2, 3), 'I': (2, 4), 'J': (2, 5), 'L': (3, 1),
     'M': (3, 2), 'N': (3, 3), 'O': (3, 4), 'P': (3, 5),
     'Q': (4, 1), 'R': (4, 2), 'S': (4, 3), 'T': (4, 4), 'U': (4, 5),
     'V': (5, 1), 'W': (5, 2), 'X': (5, 3), 'Y': (5, 4), 'Z': (5, 5),
@@ -207,9 +207,15 @@ def encode_message(message, freq_map):
     tap_code_digits = []
     for char in message:
         if char == ' ':
-            # Insert space code (any digit pair with 6-9)
-            tap_code_digits.append('6')
-            tap_code_digits.append('2')
+            # Insert space code (any digit pair with at least one digit being 6-9)
+            # Randomly pick: either (6-9, 1-5) or (1-5, 6-9) or (6-9, 6-9)
+            space_options = [
+                (random.randint(6, 9), random.randint(1, 5)),  # First digit is 6-9
+                (random.randint(1, 5), random.randint(6, 9)),  # Second digit is 6-9
+            ]
+            chosen_space = random.choice(space_options)
+            tap_code_digits.append(str(chosen_space[0]))
+            tap_code_digits.append(str(chosen_space[1]))
             continue
         if char not in TAP_CODE:
             print(f"Warning: Character '{char}' not in tap code map, skipping")

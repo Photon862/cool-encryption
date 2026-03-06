@@ -20,13 +20,13 @@ FREQUENCY_INCREMENT = generate_map_module.FREQUENCY_INCREMENT
 # ============================================
 # CONFIGURATION - EDIT THESE VALUES
 # ============================================
-TEST_MESSAGE = "hopefully this works"  # EDIT THIS MESSAGE TO ENCODE
+TEST_MESSAGE = "hey there this is a message test"  # EDIT THIS MESSAGE TO ENCODE
 
 SAMPLE_RATE = 44100  # Hz (44.1 kHz = CD quality)
 TONE_DURATION = 0.03  # seconds per digit sound - now works with improved detection
 AMPLITUDE = 0.3      # Volume (0.0 to 1.0)
 
-CHARACTERS = '12345'  # Tap code digits only
+CHARACTERS = '123456789'  # All tap code digits (1-5 for chars, 6-9 for spaces)
 
 FREQUENCY_MAP_FILE = 'frequency_map.json'
 OUTPUT_DIR = 'output'
