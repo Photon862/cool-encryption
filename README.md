@@ -12,7 +12,7 @@ As far as I know, it's nearly impossible to decode without the json file key. Se
 
 ## Two Systems
 
-### Sound1 - Character-Based System
+### stack-sound - Character-Based System
 
 The original system that encodes characters directly.
 
@@ -32,7 +32,7 @@ The original system that encodes characters directly.
 
 3. Combines all frequencies for each word into one stacked sound - so "HELLO" creates a single sound containing H, E, L, L, O frequencies all at once
 
-4. Longer tone duration required for reliable detection (typically 0.13s or higher)
+- Longer tone duration required for reliable detection (typically 0.1s or higher)
 
 **Features:**
 - Each character picks a random frequency from its pool on every encode
@@ -46,7 +46,7 @@ The original system that encodes characters directly.
 
 ---
 
-### Sound2 - Tap Code System
+### tap-sound - Tap Code System
 
 A more efficient system using tap code (like prison communication) with individual digit sounds and space support.
 
@@ -97,10 +97,10 @@ A more efficient system using tap code (like prison communication) with individu
 
 ---
 
-## Usage Instructions for both sound1 and sound2
+## Usage Instructions for both stack-sound and tap-sound
 
 ```bash
-cd sound1
+cd stack-sound
 
 # 1. Generate a new frequency map
 python generate_map.py
@@ -124,19 +124,19 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 - Keep your frequency map file secret
 - Use different maps for different messages
 - Maps are stored in JSON - each digit/character maps to a pool of frequencies
-- Example: digit "1" might have 2,211 random frequencies spread across 100-20,000 Hz
+- Example: digit "1" might have ~2000 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
 
 ---
 
 ## Technical Details
 
-### Sound1 - Encoding Process
+### stack-sound - Encoding Process
 1. Message "HELLO" → split into words → ["HELLO"]
 2. Each character picks random frequency from its pool
 3. All frequencies for "HELLO" stacked together (mixed)
 4. Output: 1 audio chunk (one sound file for the whole word)
 
-### Sound2 - Encoding Process
+### tap-sound - Encoding Process
 1. Message "HELLO WORLD" → "HELLO WORLD"
 2. Convert to tap code (with spaces):
    - H=(3,2), E=(5,1), L=(1,3), L=(1,3), O=(4,3)
@@ -165,11 +165,11 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 
 ## Comparison Table
 
-| Feature | Sound1 | Sound2 |
-|---------|--------|--------|
+| Feature | stack-sound | tap-sound |
+|---------|-------------|----------|
 | Encoding | Character-based | Tap code + digits |
 | Message Format | Words grouped | Individual digits |
-| Minimum Tone Duration | 0.13s+ | 0.03s+ |
+| Tone Duration | 0.1s | 0.1s |
 | Audio Size | Smaller | Slightly larger (per char) |
 | Speed | Slower | Faster |
 | Efficiency | Good | Better |
