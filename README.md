@@ -53,7 +53,7 @@ A more efficient system using tap code (like prison communication) with individu
 **How it works:**
 
 1. Converts each character to tap code (2 digits where row=1-5, column=1-5):
-![Tap Code Chart](sound2/tapcode.png)
+![Tap Code Chart](tap-sound/tapcode.png)
    - A = (1,1), B = (1,2), H = (2,3), I = (2,4), J = (2,5), Z = (5,5)
    - C and K both = (1,3) [only C/K are merged]
 
