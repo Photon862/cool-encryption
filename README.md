@@ -53,9 +53,9 @@ A more efficient system using tap code (like prison communication) with individu
 **How it works:**
 
 1. Converts each character to tap code (2 digits where row=1-5, column=1-5):
+![Tap Code Chart](sound2/tapcode.png)
    - A = (1,1), B = (1,2), H = (2,3), I = (2,4), J = (2,5), Z = (5,5)
    - C and K both = (1,3) [only C/K are merged]
-   - I and J are completely separate codes!
 
 2. Generates frequency map for digits 1-9 (1-5 for characters, 6-9 for space markers):
 
@@ -72,12 +72,13 @@ A more efficient system using tap code (like prison communication) with individu
 ```
 
 3. Encodes each digit as an individual sound (NOT stacked):
-   - "HELLO" → [2,3,1,5,3,1,3,1,3,4] → 10 separate tones
+   - "HELLO" → [2,3, 1,5, 3,1, 3,1, 3,4] → 10 separate tones
    - "HELLO WORLD" → includes space code (any pair with 6-9) → multiple tones
 
 4. Space handling: Any digit pair where at least one digit is 6-9 is decoded as a space
    - Examples: (6,2), (3,7), (9,1), (8,8) all = space
-   - Encoding randomly picks from valid space pairs for randomness
+   - random encoding + random selection of space codes = insane security!!
+
 
 5. Short tone durations work fine (0.03s-0.08s, optimized detection with FFT zero-padding and local maxima finding)
 
@@ -89,7 +90,6 @@ A more efficient system using tap code (like prison communication) with individu
 - More efficient encoding/decoding
 
 **Limitations:**
-- C/K and I/J are merged (same tap code)
 - Individual digits detected separately (no word grouping)
 
 ---
