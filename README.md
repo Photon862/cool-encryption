@@ -4,7 +4,7 @@
 
 This project lets you encode messages into sound. Two different encryption systems are available:
 - **stack-sound**: Original character-based system (A-Z, 0-9)
-- **tap-sound**: Tap code system with individual digit sounds (more efficient)
+- **tap-sound**: Tap code system with individual digit sounds
 
 As far as I know, it's nearly impossible to decode without the json file key. See limitations below each sound system.
 
@@ -14,7 +14,7 @@ As far as I know, it's nearly impossible to decode without the json file key. Se
 
 ### stack-sound - Character-Based System
 
-The original system that encodes characters directly.
+The stack system that encodes characters directly.
 
 **How it works:**
 
@@ -48,7 +48,7 @@ The original system that encodes characters directly.
 
 ### tap-sound - Tap Code System
 
-A more efficient system using tap code (like prison communication) with individual digit sounds and space support.
+The tap code system (like prison communication) with individual digit sounds and space support.
 
 **How it works:**
 
@@ -124,7 +124,8 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 - Keep your frequency map file secret
 - Use different maps for different messages
 - Maps are stored in JSON - each digit/character maps to a pool of frequencies
-- Example: digit "1" might have ~2000 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
+- Example for stack-sound character "A" might have ~50 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
+- Example for tap-sound: digit "1" might have ~220 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
 
 ---
 
@@ -169,7 +170,7 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 |---------|-------------|----------|
 | Encoding | Character-based | Tap code + digits |
 | Message Format | Words grouped | Individual digits |
-| Tone Duration | 0.1s | 0.1s |
+| Tone Duration | 0.1+s | 0.03+s |
 | Audio Size | Smaller | Slightly larger (per char) |
 | Speed | Slower | Faster |
 | Efficiency | Good | Better |
