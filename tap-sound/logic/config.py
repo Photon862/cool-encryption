@@ -17,7 +17,7 @@ CHARACTERS = '123456789'  # All digits for tap code (1-5 for chars, 6-9 for spac
 NUM_CHARACTERS = len(CHARACTERS)
 
 # Decoding settings
-FREQUENCY_TOLERANCE = 8  # Hz tolerance for matching (increased for short tones)
+FREQUENCY_TOLERANCE = 15  # Hz tolerance for matching (increased for better accuracy)
 FFT_WINDOW = 'hann'      # Window type for FFT (hann, hamming, blackman)
 
 # File settings

@@ -20,7 +20,7 @@ FREQUENCY_INCREMENT = generate_map_module.FREQUENCY_INCREMENT
 # ============================================
 # CONFIGURATION - EDIT THESE VALUES
 # ============================================
-TEST_MESSAGE = "hey there this is a message test"  # EDIT THIS MESSAGE TO ENCODE
+TEST_MESSAGE = "hi there this is cool"  # EDIT THIS MESSAGE TO ENCODE
 
 SAMPLE_RATE = 44100  # Hz (44.1 kHz = CD quality)
 TONE_DURATION = 0.03  # seconds per digit sound - now works with improved detection

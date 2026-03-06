@@ -1,7 +1,7 @@
 """
 CORE ENCRYPTION/DECRYPTION LOGIC
 All the complex math and signal processing happens here.
-Tap code system: Each character converts to 2 digits (row, column)
+Tap code system: Each character converts to 2 digits (column, row)
 """
 
 import numpy as np
@@ -16,12 +16,13 @@ import os
 
 
 # Tap code mapping (C/K merged only; I and J are separate)
+# Format: (col, row) where col=1-5, row=1-5
 TAP_CODE = {
-    'A': (1, 1), 'B': (1, 2), 'C': (1, 3), 'K': (1, 3), 'D': (1, 4), 'E': (1, 5),
-    'F': (2, 1), 'G': (2, 2), 'H': (2, 3), 'I': (2, 4), 'J': (2, 5), 'L': (3, 1),
-    'M': (3, 2), 'N': (3, 3), 'O': (3, 4), 'P': (3, 5),
-    'Q': (4, 1), 'R': (4, 2), 'S': (4, 3), 'T': (4, 4), 'U': (4, 5),
-    'V': (5, 1), 'W': (5, 2), 'X': (5, 3), 'Y': (5, 4), 'Z': (5, 5),
+    'A': (1, 1), 'B': (2, 1), 'C': (3, 1), 'K': (3, 1), 'D': (4, 1), 'E': (5, 1),
+    'F': (1, 2), 'G': (2, 2), 'H': (3, 2), 'I': (4, 2), 'J': (5, 2), 'L': (1, 3),
+    'M': (2, 3), 'N': (3, 3), 'O': (4, 3), 'P': (5, 3),
+    'Q': (1, 4), 'R': (2, 4), 'S': (3, 4), 'T': (4, 4), 'U': (5, 4),
+    'V': (1, 5), 'W': (2, 5), 'X': (3, 5), 'Y': (4, 5), 'Z': (5, 5),
 }
 
 # Reverse mapping: (row, col) -> character
@@ -32,18 +33,18 @@ SPACE_CODE = (6, 2)  # Space is encoded as 62
 
 
 def character_to_tap_code(char):
-    """Convert a character to tap code (row, col) tuple."""
+    """Convert a character to tap code (col, row) tuple."""
     char = char.upper()
     if char not in TAP_CODE:
         raise ValueError(f"Character '{char}' not in tap code mapping")
     return TAP_CODE[char]
 
 
-def tap_code_to_character(row, col):
-    """Convert tap code (row, col) back to character."""
-    if (row, col) not in REVERSE_TAP_CODE:
+def tap_code_to_character(col, row):
+    """Convert tap code (col, row) back to character."""
+    if (col, row) not in REVERSE_TAP_CODE:
         return '?'
-    return REVERSE_TAP_CODE[(row, col)]
+    return REVERSE_TAP_CODE[(col, row)]
 
 
 def is_space_code(row, col):
@@ -190,7 +191,7 @@ def encode_message(message, freq_map):
     """
     Encode a message into audio chunks using tap code.
     
-    Each character converts to tap code (row, col) - 2 digits.
+    Each character converts to tap code (col, row) - 2 digits.
     Each digit gets its own individual sound file.
     Spaces are encoded as digit pairs with 6-9 (e.g., 62).
     
@@ -387,7 +388,7 @@ def decode_audio_chunks(audio_chunks, freq_map):
     Decode audio chunks back to text using tap code.
     
     Each chunk is a single digit (1-5, or 6-9 for space).
-    Pairs them up: (row, col) -> character
+    Pairs them up: (col, row) -> character
     Space codes: Any pair with 6-9 in either position
     
     Args:
@@ -415,13 +416,13 @@ def decode_audio_chunks(audio_chunks, freq_map):
     decoded_message = []
     for i in range(0, len(decoded_digits), 2):
         if i + 1 < len(decoded_digits):
-            row = int(decoded_digits[i])
-            col = int(decoded_digits[i + 1])
+            col = int(decoded_digits[i])
+            row = int(decoded_digits[i + 1])
             # Check if this is a space code (contains 6-9)
-            if is_space_code(row, col):
+            if is_space_code(col, row):
                 decoded_message.append(' ')
             else:
-                char = tap_code_to_character(row, col)
+                char = tap_code_to_character(col, row)
                 decoded_message.append(char)
     
     return ''.join(decoded_message)
@@ -449,6 +450,6 @@ def show_frequency_map(freq_map):
     print("Same digit picks DIFFERENT frequency each time!")
     print("\nTap Code System:")
     print("  Rows 1-5 (5 columns each) = 25 letters")
-    print("  Each character -> 2 digits (row, col)")
-    print("  Example: H = 23 (row 2, col 3)\n")
+    print("  Each character -> 2 digits (col, row)")
+    print("  Example: H = 32 (col 3, row 2)\n")
     print("="*70 + "\n")

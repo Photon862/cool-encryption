@@ -36,8 +36,8 @@ class Encoder:
         Example:
             encoder = Encoder()
             encoder.encode("HELLO", "output/message.wav")
-            # H=23, E=15, L=31, L=31, O=34
-            # Output: 6 individual tones for [2,3,1,5,3,1,3,1,3,4]
+            # H=32, E=51, L=13, L=13, O=43
+            # Output: 6 individual tones for [3,2,5,1,1,3,1,3,4,3]
         
         Args:
             message: String to encode (e.g., "HELLO")

@@ -3,10 +3,10 @@
 **What is this?**
 
 This project lets you encode messages into sound. Two different encryption systems are available:
-- **sound1**: Original character-based system (A-Z, 0-9)
-- **sound2**: Tap code system with individual digit sounds (more efficient)
+- **stack-sound**: Original character-based system (A-Z, 0-9)
+- **tap-sound**: Tap code system with individual digit sounds (more efficient)
 
-As far as I know, it's nearly impossible to decode without the json file key.
+As far as I know, it's nearly impossible to decode without the json file key. See limitations below each sound system.
 
 ---
 
@@ -52,10 +52,11 @@ A more efficient system using tap code (like prison communication) with individu
 
 **How it works:**
 
-1. Converts each character to tap code (2 digits where row=1-5, column=1-5):
+1. Converts each character to tap code (2 digits where col=1-5, row=1-5):
 ![Tap Code Chart](tap-sound/tapcode.png)
-   - A = (1,1), B = (1,2), H = (2,3), I = (2,4), J = (2,5), Z = (5,5)
-   - C and K both = (1,3) [only C/K are merged]
+
+   - A = (1,1), B = (2,1), H = (3,2), I = (4,2), J = (5,2), Z = (5,5)
+   - C and K both = (3,1) [only C/K are merged]
 
 2. Generates frequency map for digits 1-9 (1-5 for characters, 6-9 for space markers):
 
@@ -72,7 +73,7 @@ A more efficient system using tap code (like prison communication) with individu
 ```
 
 3. Encodes each digit as an individual sound (NOT stacked):
-   - "HELLO" → [2,3, 1,5, 3,1, 3,1, 3,4] → 10 separate tones
+   - "HELLO" → [3,2, 5,1, 1,3, 1,3, 4,3] → 10 separate tones
    - "HELLO WORLD" → includes space code (any pair with 6-9) → multiple tones
 
 4. Space handling: Any digit pair where at least one digit is 6-9 is decoded as a space
@@ -91,6 +92,7 @@ A more efficient system using tap code (like prison communication) with individu
 
 **Limitations:**
 - Individual digits detected separately (no word grouping)
+- even number of sounds possible route to crack (but space codes add huge randomness)
 
 ---
 
@@ -136,10 +138,10 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 ### Sound2 - Encoding Process
 1. Message "HELLO WORLD" → "HELLO WORLD"
 2. Convert to tap code (with spaces):
-   - H=(2,3), E=(1,5), L=(3,1), L=(3,1), O=(3,4)
+   - H=(3,2), E=(5,1), L=(1,3), L=(1,3), O=(4,3)
    - Space = random pair with 6-9 (e.g., (6,8) or (4,7) or (9,9))
-   - W=(5,2), O=(3,4), R=(4,2), L=(3,1), D=(1,4)
-3. Flatten to digits: [2,3,1,5,3,1,3,1,3,4, X,Y, 5,2,3,4,4,2,3,1,1,4] where X,Y is space pair with at least one 6-9
+   - W=(2,5), O=(4,3), R=(2,4), L=(1,3), D=(4,1)
+3. Flatten to digits: [3,2,5,1,1,3,1,3,4,3, X,Y, 2,5,4,3,2,4,1,3,4,1] where X,Y is space pair with at least one 6-9
 4. Each digit picks random frequency from digit's pool
 5. Output: Individual audio chunks (one tone per digit)
 
@@ -153,7 +155,7 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 - Tone duration trade-off: shorter = faster but harder to detect; longer = slower but more reliable
 
 **Future Improvements:**
-- Password-based key generation instead of random maps
+- Password-based or math-based key generation instead of random maps
 - Error correction codes for noisy channels
 - Variable tone durations for adaptive encoding
 - Support for more characters through extended tap code
@@ -166,10 +168,8 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 |---------|--------|--------|
 | Encoding | Character-based | Tap code + digits |
 | Message Format | Words grouped | Individual digits |
-| Spaces | No | Yes |
-| Minimum Tone Duration | 0.13s+ | 0.03-0.08s |
+| Minimum Tone Duration | 0.13s+ | 0.03s+ |
 | Audio Size | Smaller | Slightly larger (per char) |
 | Speed | Slower | Faster |
 | Efficiency | Good | Better |
 | C/K Merging | No | Yes (only C/K) |
-| I/J Merging | No | No (I and J are separate) |
