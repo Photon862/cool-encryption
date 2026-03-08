@@ -7,7 +7,7 @@ This project lets you encode messages into sound. Three different encryption sys
 - **tap-sound**: Tap code system with individual digit sounds
 - **binary-sound**: Binary-only system (0 and 1)
 
-As far as I know, it's nearly impossible to decode without the json file key. See limitations below each sound system.
+As far as I know, it's nearly impossible to decode without the key file and a known text. You could blast this audio out anywhere you want and only the person you share the key with can decode it. At least I think so - it's pretty secure with the random frequency maps and multiple frequencies per symbol!
 
 ---
 
@@ -159,14 +159,12 @@ python decode-msg.py
 
 ## Frequency Map Security
 
-The `frequency_map.json` file is your encryption key. Without it, the audio file is just noise.
+The `key.json` file is your encryption key. Without it, the audio file is just noise.
 
 **Tips:**
-- Keep your frequency map file secret
+- Keep your file secret
 - Use different maps for different messages
 - Maps are stored in JSON - each digit/character maps to a pool of frequencies
-- Example for stack-sound character "A" might have ~50 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
-- Example for tap-sound: digit "1" might have ~220 random frequencies spread across 100-20,000 Hz (1990 frequencies with 10 Hz increment)
 
 ---
 
@@ -187,6 +185,17 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 3. Flatten to digits: [3,2,5,1,1,3,1,3,4,3, X,Y, 2,5,4,3,2,4,1,3,4,1] where X,Y is space pair with at least one 6-9
 4. Each digit picks random frequency from digit's pool
 5. Output: Individual audio chunks (one tone per digit)
+
+### binary-sound - Encoding Process
+1. Message "HELLO" → UTF-8 binary:
+   - H = 01001000
+   - E = 01000101
+   - L = 01001100
+   - L = 01001100
+   - O = 01001111
+2. Flatten to bits: [0,1,0,0,1,0,0,0, 0,1,0,0,0,1,0,1, ...]
+3. Each bit picks random frequency from its pool (0 or 1)
+4. Output: Individual audio chunks (one tone per bit)
 
 ---
 
