@@ -2,15 +2,16 @@
 
 **What is this?**
 
-This project lets you encode messages into sound. Two different encryption systems are available:
+This project lets you encode messages into sound. Three different encryption systems are available:
 - **stack-sound**: Original character-based system (A-Z, 0-9)
 - **tap-sound**: Tap code system with individual digit sounds
+- **binary-sound**: Binary-only system (0 and 1)
 
 As far as I know, it's nearly impossible to decode without the json file key. See limitations below each sound system.
 
 ---
 
-## Two Systems
+## Three Systems
 
 ### stack-sound - Character-Based System
 
@@ -97,10 +98,50 @@ The tap code system (like prison communication) with individual digit sounds and
 
 ---
 
-## Usage Instructions for both stack-sound and tap-sound
+### binary-sound - Binary-Only System
+
+The simplest system - only 0 and 1, but with massive randomness per digit.
+
+**How it works:**
+
+1. Converts each character to UTF-8 binary (8 bits per byte):
+   - "A" = 01000001
+   - "AB" = 0100000101000010 (16 bits)
+
+2. Generates frequency map for only 2 symbols (0 and 1):
+
+```json
+{
+  "0": [freq1, freq2, ...],
+  "1": [freq1, freq2, ...]
+}
+```
+
+Because only 2 symbols exist, each one gets a MASSIVE pool of frequencies (≈10,000 each from 100-20,000 Hz range)
+
+3. Encodes each bit as individual sound (like tap-sound)
+   - "A" → [0,1,0,0,0,0,0,1] → 8 separate tones
+   - "HELLO" → 40 tones (5 chars × 8 bits)
+
+4. Each 0 or 1 picks random frequency from its huge pool
+
+**Features:**
+- Each bit has 9,950+ frequency options (way more than tap/stack-sound)
+- Super random - no patterns possible
+- Shorter tone durations work fine (0.03s+)
+- Very efficient encoding (all binary = compact)
+
+**Limitations:**
+- Longer audio for same message length (8 bits per char vs 2 digits for tap-sound)
+- More sounds to transmit overall
+- Random pool so large that frequency analysis is nearly impossible
+
+---
+
+## Usage Instructions for all systems (stack-sound, tap-sound, binary-sound)
 
 ```bash
-cd stack-sound
+cd stack-sound or tap-sound or binary-sound
 
 # 1. Generate a new frequency map
 python generate_map.py
@@ -166,12 +207,13 @@ The `frequency_map.json` file is your encryption key. Without it, the audio file
 
 ## Comparison Table
 
-| Feature | stack-sound | tap-sound |
-|---------|-------------|----------|
-| Encoding | Character-based | Tap code + digits |
-| Message Format | Words grouped | Individual digits |
-| Tone Duration | 0.1+s | 0.03+s |
-| Audio Size | Smaller | Slightly larger (per char) |
-| Speed | Slower | Faster |
-| Efficiency | Good | Better |
-| C/K Merging | No | Yes (only C/K) |
+| Feature | stack-sound | tap-sound | binary-sound |
+|---------|-------------|----------|---------------|
+| Encoding | Character-based | Tap code + digits | Binary (UTF-8) |
+| Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) |
+| Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 |
+| Message Format | Words grouped | Individual digits | Individual bits |
+| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s |
+| Audio Size | Smaller | Larger | Largest |
+| Security | Good | Great | Best |
+| Speed | Fast | Slow | Very Slow |
