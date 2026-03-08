@@ -59,3 +59,9 @@
 2026-03-06 12:11:46,DECODED,HI TSERE THIS IS KOOL
 2026-03-06 12:13:04,"ENCODED, hi there this is cool, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
 2026-03-06 12:13:05,DECODED,HI THERE THIS IS KOOL
+2026-03-08 20:04:39,"ENCODED, test message, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-08 20:05:53,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-08 20:05:56,DECODED,TESTING A LONGER MESSAGE TO SEE IF THIS WORKS AT ALL
+2026-03-08 20:06:59,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-08 20:07:22,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-08 20:07:25,DECODED,TJQIHNGEA LOHGERIGERHAGE TM SEE IF TFISRWOBASBADRALA

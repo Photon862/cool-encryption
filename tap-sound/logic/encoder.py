@@ -18,13 +18,13 @@ class Encoder:
     
     def __init__(self):
         """Initialize encoder with frequency map."""
-        if os.path.exists(FREQUENCY_MAP_FILE):
-            self.freq_map = load_frequency_map(FREQUENCY_MAP_FILE)
-            print(f"✓ Loaded frequency map from {FREQUENCY_MAP_FILE}")
-        else:
-            print(f"✓ Creating new frequency map for tap code digits (1-5)...")
-            self.freq_map = create_frequency_map()
-            save_frequency_map(self.freq_map, FREQUENCY_MAP_FILE)
+        if not os.path.exists(FREQUENCY_MAP_FILE):
+            raise FileNotFoundError(
+                f"ERROR: Required frequency map file '{FREQUENCY_MAP_FILE}' not found. "
+                f"Please generate it using generate_map.py first."
+            )
+        self.freq_map = load_frequency_map(FREQUENCY_MAP_FILE)
+        print(f"✓ Loaded frequency map from {FREQUENCY_MAP_FILE}")
     
     def encode(self, message, output_file=None):
         """

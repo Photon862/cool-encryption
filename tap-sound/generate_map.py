@@ -17,7 +17,7 @@ FREQUENCY_INCREMENT = 1   # Hz step between available frequencies
 
 CHARACTERS = '123456789'  # All digits for tap code (1-5 for chars, 6-9 for space)
 NUM_CHARACTERS = len(CHARACTERS)
-FREQUENCY_MAP_FILE = 'frequency_map.json'
+FREQUENCY_MAP_FILE = 'key.json'
 
 def create_frequency_map():
     """
