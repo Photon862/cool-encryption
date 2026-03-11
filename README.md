@@ -11,6 +11,9 @@ This project lets you encode messages into sound. Three different encryption sys
 
 As far as I know, it's nearly impossible to decode without the key file and a known text. You could blast this audio out anywhere you want and only the person you share the key with can decode it. At least I think so - it's pretty secure with the random frequency maps and multiple frequencies per symbol!
 
+How the key.json works:
+![Key Map Explain](generate-map-explain.png)
+
 ---
 
 Base64-sound is my favourite so far because it follows stack-sound and tap/binary-sound for a mixture of speed and security. I thought its genius because stack-sound can be cracked maybe by english language patterns and conversation - but base64 turns it into random gibberish.
@@ -43,6 +46,8 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 ---
 
 ### stack-sound - Character-Based System
+
+![Stack Sound Explain](stack-sound-explain.png)
 
 The stack system that encodes characters directly.
 
@@ -77,6 +82,8 @@ The stack system that encodes characters directly.
 ---
 
 ### tap-sound - Tap Code System
+
+![Tap Code Explain](tap-sound-explain.png)
 
 The tap code system (like prison communication) with individual digit sounds and space support.
 
@@ -129,6 +136,8 @@ The tap code system (like prison communication) with individual digit sounds and
 
 ### binary-sound - Binary-Only System
 
+![Binary Sound Explain](binary-sound-explain.png)
+
 The simplest system - only 0 and 1, but with massive randomness per digit.
 
 **How it works:**
@@ -166,6 +175,8 @@ Because only 2 symbols exist, each one gets a MASSIVE pool of frequencies (≈10
 ---
 
 ### base64-sound - Base64 Character System
+
+![Base64 Sound Explain](base64-sound-explain.png)
 
 Encodes your message as base64, then turns each character into a unique sound.
 
