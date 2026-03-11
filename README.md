@@ -38,7 +38,7 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 |--------|---------|-------------|----------|---------------|---------------|
 | Combinations | **10^77.1** | **10^6,285** | **10^19,111** | **10^6,583** | **10^7,263** |
 
-**Note:** These specs are with 100-20,000 Hz range and 10 or 5Hz increment and the message is 10 characterrs long. If the message is longer or better equipment is used(wider range + smaller increment), this can dramatically increase combinations and security.
+**Note:** These specs are with 100-20,000 Hz range and 10 or 5Hz increment and the message is 10 characters long. If the message is longer or better equipment is used(wider range + smaller increment), this can dramatically increase combinations and security.
 
 ---
 
