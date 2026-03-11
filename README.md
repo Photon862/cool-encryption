@@ -17,7 +17,30 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 
 ---
 
-## Three Systems
+## Comparison Table
+
+| Feature | stack-sound | tap-sound | binary-sound | base64-sound |
+|---------|-------------|----------|---------------|---------------|
+| Encoding | Character-based | Tap code + digits | Binary (UTF-8) | Base64 (text) |
+| Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) | 63 (no =) |
+| Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 | ≈300 |
+| Message Format | Words grouped | digits | 0 or 1 | base64 chars |
+| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s | 0.03s |
+| Audio Size | Smaller | Large | Largest | Medium |
+| Security | Good | Great | Best | Best |
+| Speed | Fast | Slow | Very Slow | Medium |
+
+---
+
+## Security Probability Comparison
+
+| Metric | SHA-256 | stack-sound | tap-sound | binary-sound | base64-sound |
+|--------|---------|-------------|----------|---------------|---------------|
+| Combinations | **10^77.1** | **10^6,285** | **10^19,111** | **10^6,583** | **10^7,263** |
+
+**Note:** These specs are with 100-20,000 Hz range and 10 or 5Hz increment. If better equipment is used, a wider range + smaller increment can dramatically increase combinations and security.
+
+---
 
 ### stack-sound - Character-Based System
 
@@ -209,18 +232,3 @@ The `key.json` file is your encryption key. Without it, the audio file is just n
 - Error correction codes for noisy channels
 - Variable tone durations for adaptive encoding
 - Support for more characters through extended tap code
-
----
-
-## Comparison Table
-
-| Feature | stack-sound | tap-sound | binary-sound | base64-sound |
-|---------|-------------|----------|---------------|---------------|
-| Encoding | Character-based | Tap code + digits | Binary (UTF-8) | Base64 (text) |
-| Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) | 63 (no =) |
-| Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 | ≈300 |
-| Message Format | Words grouped | digits | 0 or 1 | base64 chars |
-| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s | 0.03s |
-| Audio Size | Smaller | Large | Largest | Medium |
-| Security | Good | Great | Best | Best |
-| Speed | Fast | Slow | Very Slow | Medium |
