@@ -20,10 +20,10 @@ FREQUENCY_INCREMENT = generate_map_module.FREQUENCY_INCREMENT
 # ============================================
 # CONFIGURATION - EDIT THESE VALUES
 # ============================================
-TEST_MESSAGE = "lets see if this works"  # EDIT THIS MESSAGE TO ENCODE
+TEST_MESSAGE = "lets see if this works with super fast seconds"  # EDIT THIS MESSAGE TO ENCODE
 
 SAMPLE_RATE = 44100  # Hz (44.1 kHz = CD quality)
-TONE_DURATION = 0.02  # seconds per bit sound
+TONE_DURATION = 0.03  # seconds per bit sound
 AMPLITUDE = 0.3      # Volume (0.0 to 1.0)
 
 CHARACTERS = '01'  # Binary: 0 and 1

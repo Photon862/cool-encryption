@@ -9,18 +9,6 @@
 2026-03-06 11:29:23,"ENCODED, SECRETMESSAGE, ToneDuration=0.1, 100-20000HZ, Increment=4, TapCode"
 2026-03-06 11:30:04,"ENCODED, SECRETMESSAGE, ToneDuration=0.1, 100-20000HZ, Increment=4, TapCode"
 2026-03-06 11:30:05,DECODED,?QRLLBXBQRKAX
-2026-03-06 11:31:49,"ENCODED, SECRETMESSAGE, ToneDuration=0.1, 100-20000HZ, Increment=4, TapCode"
-2026-03-06 11:31:52,DECODED,XRSGMES?VSJHL
-2026-03-06 11:32:06,"ENCODED, SECRETMESSAGE, ToneDuration=0.5, 100-20000HZ, Increment=4, TapCode"
-2026-03-06 11:32:07,DECODED,SEKRETMESSAGE
-2026-03-06 11:32:15,"ENCODED, SECRETMESSAGE, ToneDuration=0.1, 100-20000HZ, Increment=4, TapCode"
-2026-03-06 11:32:28,DECODED,YWV?EXRBSXTMR
-2026-03-06 11:32:38,"ENCODED, SECRETMESSAGE, ToneDuration=0.12, 100-20000HZ, Increment=4, TapCode"
-2026-03-06 11:32:40,DECODED,?NLKEFDXSHSFU
-2026-03-06 11:33:04,"ENCODED, SECRETMESSAGE, ToneDuration=0.15, 100-20000HZ, Increment=4, TapCode"
-2026-03-06 11:33:06,DECODED,SEKRETMESSAGE
-2026-03-06 11:33:33,"ENCODED, SECRETMESSAGE, ToneDuration=0.1, 100-20000HZ, Increment=10, TapCode"
-2026-03-06 11:33:36,DECODED,VFEWLLKGWEWDT
 2026-03-06 11:34:16,"ENCODED, SECRETMESSAGE, ToneDuration=0.12, 100-20000HZ, Increment=10, TapCode"
 2026-03-06 11:34:17,DECODED,SZWMQVYJBDANA
 2026-03-06 11:34:30,"ENCODED, SECRETMESSAGE, ToneDuration=0.13, 100-20000HZ, Increment=10, TapCode"
@@ -65,3 +53,20 @@
 2026-03-08 20:06:59,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
 2026-03-08 20:07:22,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
 2026-03-08 20:07:25,DECODED,TJQIHNGEA LOHGERIGERHAGE TM SEE IF TFISRWOBASBADRALA
+2026-03-11 19:40:52,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.02, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:40:57,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.015, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:41:00,DECODED, MW   Q    T DH        V        J  J      L R  FR L 
+2026-03-11 19:41:14,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.018, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:41:15,DECODED,UBXQ    Y    Q      G     M V O  O      G  E  AN K  
+2026-03-11 19:41:22,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.02, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:41:23,DECODED,TEST NFIA LO GER MESSAGE TO SEE IF THIS WORKS  T ALL
+2026-03-11 19:41:32,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:41:35,DECODED,QESTING A LONGER MESSAGE  O SEE IF T IS WORKS AT VLL
+2026-03-11 19:44:53,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.03, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:44:56,DECODED,TESTING A LONGER MESSAGE TO SEE IF THIS WORKS AT ALN
+2026-03-11 19:45:12,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.01, 100-20000HZ, Increment=1, TapCode"
+2026-03-11 19:45:16,DECODED,TBOT NG B  O GER RE SA E TO SD  I  THIS WORN  AO ELL
+2026-03-11 19:45:37,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.01, 100-20000HZ, Increment=5, TapCode"
+2026-03-11 19:45:39,DECODED,TESTMH BL SNHWF JXLODFWL T LYVQRB RORM GUHOLD Q EAK
+2026-03-11 19:46:19,"ENCODED, testing a longer message to see if this works at all, ToneDuration=0.02, 100-20000HZ, Increment=2, TapCode"
+2026-03-11 19:46:21,DECODED,TESTING A LONGER MESSAGE TO SEE IF THIS WORKS AT ALL

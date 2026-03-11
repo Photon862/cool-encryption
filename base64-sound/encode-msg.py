@@ -22,10 +22,10 @@ FREQUENCY_INCREMENT = generate_map_module.FREQUENCY_INCREMENT
 # ============================================
 # CONFIGURATION - EDIT THESE VALUES
 # ============================================
-TEST_MESSAGE = "wow this is working pretty well thats kinda cool"  # EDIT THIS MESSAGE TO ENCODE
+TEST_MESSAGE = "this is testing with a tone duration of 0.01 seconds hopefully it works"  # EDIT THIS MESSAGE TO ENCODE
 
 SAMPLE_RATE = 44100  # Hz (44.1 kHz = CD quality)
-TONE_DURATION = 0.03  # seconds per sound/character - optimized for speed
+TONE_DURATION = 0.01  # seconds per sound/character - optimized for speed
 AMPLITUDE = 0.3      # Volume (0.0 to 1.0)
 
 CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/-'

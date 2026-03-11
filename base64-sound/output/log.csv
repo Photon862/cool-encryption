@@ -3,3 +3,27 @@ Timestamp,Log
 2026-03-11 12:07:39,"DECODED, lets see if base64 works or not"
 2026-03-11 12:08:07,"ENCODED, wow this is working pretty well thats kinda cool, ToneDuration=0.03, 100-20000HZ, Increment=5"
 2026-03-11 12:08:19,"DECODED, wow this is working pretty well thats kinda cool"
+2026-03-11 19:37:16,"ENCODED, 
+hello base64 i think this is pretty cool what about you
+, ToneDuration=0.03, 100-20000HZ, Increment=5"
+2026-03-11 19:37:19,"DECODED, 
+hello base64 i think this is pretty cool what about you
+"
+2026-03-11 19:37:31,"ENCODED, 
+hello base64 i think this is pretty cool what about you
+, ToneDuration=0.02, 100-20000HZ, Increment=5"
+2026-03-11 19:37:32,"DECODED, 
+hello base64 i think this is pretty cool what about you
+"
+2026-03-11 19:38:10,"ENCODED, testing message secret sending, ToneDuration=0.02, 100-20000HZ, Increment=5"
+2026-03-11 19:38:11,"DECODED, testing message secret sending"
+2026-03-11 19:38:30,"ENCODED, testing message secret sending, ToneDuration=0.01, 100-20000HZ, Increment=5"
+2026-03-11 19:38:32,"DECODED, testing message secret sending"
+2026-03-11 19:38:55,"ENCODED, this is testing with a tone duration of 0.01 seconds hopefully it works, ToneDuration=0.01, 100-20000HZ, Increment=5"
+2026-03-11 19:38:56,"DECODED, this is testing with a tone duration of 0.01 seconds hopefully it works"
+2026-03-11 19:43:11,"ENCODED, this is testing with a tone duration of 0.01 seconds hopefully it works, ToneDuration=0.005, 100-20000HZ, Increment=5"
+2026-03-11 19:43:22,"DECODED, [ERROR: Could not decode base64: 'utf-8' codec can't decode byte 0xc0 in position 0: invalid start byte]"
+2026-03-11 19:43:37,"ENCODED, this is testing with a tone duration of 0.01 seconds hopefully it works, ToneDuration=0.009, 100-20000HZ, Increment=5"
+2026-03-11 19:43:38,"DECODED, [ERROR: Could not decode base64: Incorrect padding]"
+2026-03-11 19:43:47,"ENCODED, this is testing with a tone duration of 0.01 seconds hopefully it works, ToneDuration=0.01, 100-20000HZ, Increment=5"
+2026-03-11 19:43:49,"DECODED, this is testing with a tone duration of 0.01 seconds hopefully it works"

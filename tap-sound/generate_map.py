@@ -13,7 +13,7 @@ import sys
 # ============================================
 FREQUENCY_MIN = 100         # Minimum frequency (Hz)
 FREQUENCY_MAX = 20000       # Maximum frequency (Hz)
-FREQUENCY_INCREMENT = 1   # Hz step between available frequencies
+FREQUENCY_INCREMENT = 2   # Hz step between available frequencies
 
 CHARACTERS = '123456789'  # All digits for tap code (1-5 for chars, 6-9 for space)
 NUM_CHARACTERS = len(CHARACTERS)

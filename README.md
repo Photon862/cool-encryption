@@ -12,7 +12,11 @@ This project lets you encode messages into sound. Three different encryption sys
 As far as I know, it's nearly impossible to decode without the key file and a known text. You could blast this audio out anywhere you want and only the person you share the key with can decode it. At least I think so - it's pretty secure with the random frequency maps and multiple frequencies per symbol!
 
 How the key.json works:
-![Key Map Explain](generate-map-explain.png)
+![Key Map Explain](images/generate-map-explain.png)
+
+---
+
+**Play around with frequency range, increment and tone duration to find the limit of your equipment to increase security!!**
 
 ---
 
@@ -28,7 +32,7 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 | Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) | 63 (no =) |
 | Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 | ≈300 |
 | Message Format | Words grouped | digits | 0 or 1 | base64 chars |
-| Tone Duration FASTEST | 0.1s | 0.03s | 0.02s | 0.03s |
+| Tone Duration FASTEST | 0.1s | 0.02s | 0.02s | 0.01s (BEST) |
 | Audio Size | Small | Large | Largest | Small |
 | Security | Good | Great | Best | Best |
 | Speed | Fast | Slow | Very Slow | Fast |
@@ -47,7 +51,7 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 
 ### stack-sound - Character-Based System
 
-![Stack Sound Explain](stack-sound-explain.png)
+![Stack Sound Explain](images/stack-sound-explain.png)
 
 The stack system that encodes characters directly.
 
@@ -83,7 +87,7 @@ The stack system that encodes characters directly.
 
 ### tap-sound - Tap Code System
 
-![Tap Code Explain](tap-sound-explain.png)
+![Tap Code Explain](images/tap-sound-explain.png)
 
 The tap code system (like prison communication) with individual digit sounds and space support.
 
@@ -91,7 +95,7 @@ The tap code system (like prison communication) with individual digit sounds and
 
 1. Converts each character to tap code (2 digits where col=1-5, row=1-5):
 
-![Tap Code Chart](tap-sound/tapcode.png)
+![Tap Code Chart](images/tapcode.png)
 
    - A = (1,1), B = (2,1), H = (3,2), I = (4,2), J = (5,2), Z = (5,5)
    - C and K both = (3,1) [only C/K are merged]
@@ -136,7 +140,7 @@ The tap code system (like prison communication) with individual digit sounds and
 
 ### binary-sound - Binary-Only System
 
-![Binary Sound Explain](binary-sound-explain.png)
+![Binary Sound Explain](images/binary-sound-explain.png)
 
 The simplest system - only 0 and 1, but with massive randomness per digit.
 
