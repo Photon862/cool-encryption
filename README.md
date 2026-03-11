@@ -25,10 +25,10 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 | Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) | 63 (no =) |
 | Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 | ≈300 |
 | Message Format | Words grouped | digits | 0 or 1 | base64 chars |
-| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s | 0.03s |
-| Audio Size | Smaller | Large | Largest | Medium |
+| Tone Duration FASTEST | 0.1s | 0.03s | 0.02s | 0.03s |
+| Audio Size | Small | Large | Largest | Small |
 | Security | Good | Great | Best | Best |
-| Speed | Fast | Slow | Very Slow | Medium |
+| Speed | Fast | Slow | Very Slow | Fast |
 
 ---
 
@@ -38,7 +38,7 @@ Base64-sound is my favourite so far because it follows stack-sound and tap/binar
 |--------|---------|-------------|----------|---------------|---------------|
 | Combinations | **10^77.1** | **10^6,285** | **10^19,111** | **10^6,583** | **10^7,263** |
 
-**Note:** These specs are with 100-20,000 Hz range and 10 or 5Hz increment and the message is 10 characters long. If the message is longer or better equipment is used(wider range + smaller increment), this can dramatically increase combinations and security.
+**Note:** These specs are with 100-20,000 Hz range and 10 or 5Hz increment and the message is 10 characters long. If the message is longer or better equipment is used (wider range + smaller increment), this can dramatically increase combinations and security.
 
 ---
 
