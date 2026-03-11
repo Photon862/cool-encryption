@@ -3,11 +3,17 @@
 **What is this?**
 
 This project lets you encode messages into sound. Three different encryption systems are available:
-- **stack-sound**: Original character-based system (A-Z, 0-9)
-- **tap-sound**: Tap code system with individual digit sounds
-- **binary-sound**: Binary-only system (0 and 1)
+- **stack-sound**: character-based system (A-Z, 0-9) with words stacked sounds
+- **tap-sound**: Text converted to tap code digits for more complicated sounds
+- **binary-sound**: Binary-only system (0 and 1) for maximum randomness and security
+- **base64-sound**: base64 encoding to prevent english language pattern recognition
+
 
 As far as I know, it's nearly impossible to decode without the key file and a known text. You could blast this audio out anywhere you want and only the person you share the key with can decode it. At least I think so - it's pretty secure with the random frequency maps and multiple frequencies per symbol!
+
+---
+
+Base64-sound is my favourite so far because it follows stack-sound and tap/binary-sound for a mixture of speed and security. I thought its genius because stack-sound can be cracked maybe by english language patterns and conversation - but base64 turns it into random gibberish.
 
 ---
 
@@ -109,14 +115,12 @@ The simplest system - only 0 and 1, but with massive randomness per digit.
    - "AB" = 0100000101000010 (16 bits)
 
 2. Generates frequency map for only 2 symbols (0 and 1):
-
 ```json
 {
   "0": [freq1, freq2, ...],
   "1": [freq1, freq2, ...]
 }
 ```
-
 Because only 2 symbols exist, each one gets a MASSIVE pool of frequencies (≈10,000 each from 100-20,000 Hz range)
 
 3. Encodes each bit as individual sound (like tap-sound)
@@ -138,10 +142,35 @@ Because only 2 symbols exist, each one gets a MASSIVE pool of frequencies (≈10
 
 ---
 
-## Usage Instructions for all systems (stack-sound, tap-sound, binary-sound)
+### base64-sound - Base64 Character System
+
+Encodes your message as base64, then turns each character into a unique sound.
+
+**How it works:**
+
+1. Converts your message to base64 (A-Z, a-z, 0-9, +, /, -)
+2. Removes any '=' padding (not needed for decoding)
+3. Generates a random frequency map for each base64 character
+4. Each character gets its own sound ("hello" = 8 base64 chars = 8 sounds)
+5. No stacking: every character is played out one after another
+
+- Short tone durations work well (0.03s+)
+- Decoding automatically adds back any missing '=' padding
+
+**Features:**
+- Works for any text (UTF-8)
+- Each character picks a random frequency from its pool
+- Harder to crack by following english language patterns (base64 looks more random)
+
+**Limitations:**
+- Slightly longer audio for same message (base64 expands text)
+
+---
+
+## Usage Instructions for all systems (stack-sound, tap-sound, binary-sound, base64-sound)
 
 ```bash
-cd stack-sound or tap-sound or binary-sound
+cd stack-sound or tap-sound or binary-sound or base64-sound
 
 # 1. Generate a new frequency map
 python generate_map.py
@@ -168,37 +197,6 @@ The `key.json` file is your encryption key. Without it, the audio file is just n
 
 ---
 
-## Technical Details
-
-### stack-sound - Encoding Process
-1. Message "HELLO" → split into words → ["HELLO"]
-2. Each character picks random frequency from its pool
-3. All frequencies for "HELLO" stacked together (mixed)
-4. Output: 1 audio chunk (one sound file for the whole word)
-
-### tap-sound - Encoding Process
-1. Message "HELLO WORLD" → "HELLO WORLD"
-2. Convert to tap code (with spaces):
-   - H=(3,2), E=(5,1), L=(1,3), L=(1,3), O=(4,3)
-   - Space = random pair with 6-9 (e.g., (6,8) or (4,7) or (9,9))
-   - W=(2,5), O=(4,3), R=(2,4), L=(1,3), D=(4,1)
-3. Flatten to digits: [3,2,5,1,1,3,1,3,4,3, X,Y, 2,5,4,3,2,4,1,3,4,1] where X,Y is space pair with at least one 6-9
-4. Each digit picks random frequency from digit's pool
-5. Output: Individual audio chunks (one tone per digit)
-
-### binary-sound - Encoding Process
-1. Message "HELLO" → UTF-8 binary:
-   - H = 01001000
-   - E = 01000101
-   - L = 01001100
-   - L = 01001100
-   - O = 01001111
-2. Flatten to bits: [0,1,0,0,1,0,0,0, 0,1,0,0,0,1,0,1, ...]
-3. Each bit picks random frequency from its pool (0 or 1)
-4. Output: Individual audio chunks (one tone per bit)
-
----
-
 ## Notes
 
 **General Limitations:**
@@ -216,13 +214,13 @@ The `key.json` file is your encryption key. Without it, the audio file is just n
 
 ## Comparison Table
 
-| Feature | stack-sound | tap-sound | binary-sound |
-|---------|-------------|----------|---------------|
-| Encoding | Character-based | Tap code + digits | Binary (UTF-8) |
-| Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) |
-| Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 |
-| Message Format | Words grouped | Individual digits | Individual bits |
-| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s |
-| Audio Size | Smaller | Larger | Largest |
-| Security | Good | Great | Best |
-| Speed | Fast | Slow | Very Slow |
+| Feature | stack-sound | tap-sound | binary-sound | base64-sound |
+|---------|-------------|----------|---------------|---------------|
+| Encoding | Character-based | Tap code + digits | Binary (UTF-8) | Base64 (text) |
+| Symbols | 36 (A-Z, 0-9) | 9 (digits 1-9) | 2 (0 and 1) | 63 (no =) |
+| Freq Pool per Symbol | ≈550 | ≈2,200 | ≈9,950 | ≈300 |
+| Message Format | Words grouped | digits | 0 or 1 | base64 chars |
+| Tone Duration LIMIT | 0.1s | 0.03s | 0.02s | 0.03s |
+| Audio Size | Smaller | Large | Largest | Medium |
+| Security | Good | Great | Best | Best |
+| Speed | Fast | Slow | Very Slow | Medium |
